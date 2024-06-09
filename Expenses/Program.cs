@@ -6,9 +6,7 @@ namespace Expenses
     {
         static void Main(string[] args)
         {
-
             string response;
-            string otherResponse="y";
             int weekDays = 7;
             int typeOfExpense;
             int[,] nutrition = new int[7, 10];
@@ -17,11 +15,6 @@ namespace Expenses
             int[,] communication = new int[7, 10];
             int[,] utilities = new int[7, 10];
             int[,] others = new int[7, 10];
-
-            // Console.WriteLine("IS THERE OTHER EXPENSE TODAY? (y - yes / n - no)");
-            // otherResponse == "y" &&
-            // otherResponse = Console.ReadLine();
-            //j++;
 
             for (int i = 1; i <= weekDays; i++)
             {
@@ -44,9 +37,7 @@ namespace Expenses
                         Console.WriteLine("6 . Others");
                         Console.WriteLine("ENTER TYPE OF EXPENSE: ");
                         typeOfExpense = int.Parse(Console.ReadLine());
-
-
-                        
+                                                
                             switch (typeOfExpense)
                             {
                                 case 1:
@@ -89,9 +80,7 @@ namespace Expenses
                         
                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
                         expenseResponseForTheDay = Console.ReadLine();
-                        
-                            j++;
-
+                        j++;
                     }
                 }
                 else if(response == "n")
@@ -113,16 +102,22 @@ namespace Expenses
             Console.WriteLine($"TOTAL AMOUNT SPEND ON COMMUNICATION IS {TotalAmountOfExpense(communication)}");
             Console.WriteLine($"TOTAL AMOUNT SPEND ON UTILITIES IS {TotalAmountOfExpense(utilities)}");
             Console.WriteLine($"TOTAL AMOUNT SPEND ON OTHERS IS {TotalAmountOfExpense(others)}");
+
+            double totalSpendingOnMonday = TotalExpenseOnMonday(nutrition)
+                                         + TotalExpenseOnMonday(transport)
+                                         + TotalExpenseOnMonday(education)
+                                         + TotalExpenseOnMonday(communication)
+                                         + TotalExpenseOnMonday(utilities)
+                                         + TotalExpenseOnMonday(others);
         }
-       
-        public static double TotalAmountOfExpense(int[,] nutrition )
+        public static double TotalAmountOfExpense(int[,] expense )
         {
             int totalAmount = 0;
             for (int i = 0; i < 7; i++  )
             {
                 for(int j = 0; j < 10; j++)
                 {
-                    totalAmount += nutrition[i, j]; 
+                    totalAmount += expense[i, j]; 
                 }
             }
             return totalAmount;
@@ -130,19 +125,20 @@ namespace Expenses
         public static void Print(int[,] expenseArray, string expenseName)
         {
             Console.WriteLine($"{ expenseName}");
-            Console.WriteLine("M      T      W      T      F      S      S");
-
+            Console.WriteLine("                Expense 1  Expense 2  Expense 3  Expense 4  Expense 5  Expense 6  Expense 7  Expense 8  Expense 9  Expense 10");
+            string[] weekDayNames = new string[7] { "Monday      ", "Tuesday     ", "Wednesday   ", "Thursday    ", "Friday      ", "Saturday    ", "Sunday      " };
             for (int i = 0; i < 7; i++)
             {
+                Console.Write($"  {weekDayNames[i]}");
                 for (int j = 0; j < 10; j++)
                 {
-                    Console.Write($"{expenseArray[i, j]}    ");
+                    Console.Write($"    {expenseArray[i, j]}      ");
                 }
                 Console.WriteLine();
 
             }
+            Console.WriteLine();
         }
-
         public static string GetNameOfExpense(int expenseNumber)
         {
             string expenseName;
@@ -182,5 +178,15 @@ namespace Expenses
             }
             return expenseName;
         }
+        public static double TotalExpenseOnMonday(int[,] expenseMonday)
+        {
+            double totalSpendingOnMonday = 0;
+            for(int i = 0; i < 10;i++)
+            {
+                totalSpendingOnMonday = expenseMonday[1, i];
+            }
+            return totalSpendingOnMonday;
+        }
+
     }
 }
