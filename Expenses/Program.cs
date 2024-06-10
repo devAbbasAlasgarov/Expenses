@@ -15,7 +15,7 @@ namespace Expenses
             double totalSpendingForCommunication = 0;
             double totalSpendingForUtilities = 0;
             double totalSpendingForOthers = 0;
-
+            double[] totalExpensePerDay = new double[7];
             int[,] nutrition = new int[7, 10];
             int[,] transport = new int[7, 10];
             int[,] education = new int[7, 10];
@@ -93,7 +93,10 @@ namespace Expenses
                         
                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
                         expenseResponseForTheDay = Console.ReadLine();
+                        totalExpensePerDay[j] = nutrition[numberOfDay - 1, j] + transport[numberOfDay - 1, j] + education[numberOfDay - 1, j]
+                                                + communication[numberOfDay - 1, j] + utilities[numberOfDay - 1, j] + others[numberOfDay - 1, j];
                         j++;
+
                     }
                 }
                 else if(response == "n")
@@ -101,14 +104,13 @@ namespace Expenses
                     Console.WriteLine($"THERE IS NO ANY EXPENSE ON DAY {numberOfDay}.");
                 }
             }
-            ///////////////////////////////////////////////////////////////
-            // Həftə ərzində toplam xərc
+            //////////////////  Həftə ərzində toplam xərc  /////////////////////////////////// 
             double totalWeeklySpending = 0;
             int[][,] allExpenses = new int[6][,] { nutrition, transport, education, communication, utilities, others };
             totalWeeklySpending = TotalSpendingPerWeek(allExpenses);
             Console.WriteLine($"TOTAL WEEKLY SPENDING IS {totalWeeklySpending}");
-            ///////////////////////////////////////////////////////////////
-            //  Ən çox hansı növ üçün xərc çəkilib və miqdarı
+            //////////////////  Ən çox hansı növ üçün xərc çəkilib və miqdarı////////////////
+
             double[] ArrayOfSpendingPerExpense = new double[] { totalSpendingForNutrition,
                                                                 totalSpendingForTransport,
                                                                 totalSpendingForEducation,
@@ -117,15 +119,21 @@ namespace Expenses
                                                                 totalSpendingForOthers };
 
             maxSpentAmountPerExpense(ArrayOfSpendingPerExpense);
-            ///////////////////////////////////////////////////////////////
-            // Ən az hansı növ üçün xərc çəkilib və miqdarı
+            //////////////////// Ən az hansı növ üçün xərc çəkilib və miqdarı///////////////
             minSpentAmountPerExpense(ArrayOfSpendingPerExpense);
-            /*   
-             * 
-               Günlük ortalama xərc nə qədərdir // add counter for every purchase to calculate average dialy spending
-               Ən çox hansı gün xərc edilib və miqdarı .
-               Ən az hansı gün xərc edilib və miqdarı
-            */
+
+            ////////////////////  Günlük ortalama xərc nə qədərdir///////////////
+            double averageDailySpending = 0;
+            for(int dayCounter = 0; dayCounter < 7; dayCounter++)
+            {
+                averageDailySpending = averageDailySpending + totalExpensePerDay[dayCounter];
+            }
+            Console.WriteLine($"THE AVERAGE DAILY SPENDING IS {averageDailySpending/7}");
+            //////////////////// Ən çox hansı gün xərc edilib və miqdarı///////////////
+            maxSpentAmountPerDay(totalExpensePerDay);
+            //////////////////// Ən az hansı gün xərc edilib və miqdarı///////////////
+            minSpentAmountPerDay(totalExpensePerDay);
+          
 
             /*
             
@@ -181,7 +189,7 @@ namespace Expenses
                                          + totalSpendingOnSaturday
                                          + totalSpendingOnSunday);
             */
-            /*
+            
             Print(nutrition, "Nutrition : ");
             Print(transport, "Transport : ");
             Print(education, "Education : ");
@@ -190,7 +198,7 @@ namespace Expenses
             Print(others, " Others: ");
 
             
-
+            /*
 
 
             Console.WriteLine($"TOTAL AMOUNT SPEND ON NUTRITION IS {TotalAmountOfExpense(nutrition)}");
@@ -275,55 +283,6 @@ namespace Expenses
             }
             return total;
         }
-        /*
-        public static void Print(int[,] expenseArray, string expenseName)
-        {
-            Console.WriteLine($"{ expenseName}");
-            Console.WriteLine("                Expense 1  Expense 2  Expense 3  Expense 4  Expense 5  Expense 6  Expense 7  Expense 8  Expense 9  Expense 10");
-            string[] weekDayNames = new string[7] { "Monday      ", "Tuesday     ", "Wednesday   ", "Thursday    ", "Friday      ", "Saturday    ", "Sunday      " };
-            for (int i = 0; i < 7; i++)
-            {
-                Console.Write($"  {weekDayNames[i]}");
-                for (int j = 0; j < 10; j++)
-                {
-                    Console.Write($"    {expenseArray[i, j]}      ");
-                }
-                Console.WriteLine();
-
-            }
-            Console.WriteLine();
-        }
-        */
-        /*
-        
-        */
-        /*
-        public static double TotalExpenseOnDay(int dayNumber, int[,] expenseDay)
-        {
-            double totalSpendingOnDay = 0;
-            for(int i = 0; i < 10;i++)
-            {
-                totalSpendingOnDay += expenseDay[dayNumber, i];
-            }
-            return totalSpendingOnDay;
-        }
-        */
-        /*
-       public static double TotalAmountOfExpense(int[,] expense )
-       {
-           int totalAmount = 0;
-           for (int i = 0; i < 7; i++  )
-           {
-               for(int j = 0; j < 10; j++)
-               {
-                   totalAmount += expense[i, j]; 
-               }
-           }
-           return totalAmount;
-       }
-       */
-        ///////////////////////////////
-        
         public static void maxSpentAmountPerExpense(double[] maxArray)
         {
             double max = 0;
@@ -372,7 +331,6 @@ namespace Expenses
 
             Console.WriteLine($"THE HIGHEST AMOUNT IS SPENT FOR {nameOfExpense} EXPENSE AND TOTAL EXPENSE FOR {nameOfExpense} IN A WEEK IS {max}");
         }
-
         public static void minSpentAmountPerExpense(double[] minArray)
         {
             double min = 0;
@@ -422,6 +380,157 @@ namespace Expenses
 
             Console.WriteLine($"THE LOWEST AMOUNT IS SPENT FOR {nameOfExpense} EXPENSE AND TOTAL EXPENSE FOR {nameOfExpense} IN A WEEK IS {min}");
         }
+        public static void maxSpentAmountPerDay(double[] maxArray)
+        {
+            double max = 0;
+            int index = 0;
+            string dayOfWeek = "";
+            for (int i = 0; i < maxArray.Length; i++)
+            {
+                if (max < maxArray[i])
+                {
+                    max = maxArray[i];
+                    index = i;
+                }
+            }
+            switch (index)
+            {
+                case 0:
+                    {
+                        dayOfWeek = "MONDAY";
+                    }
+                    break;
+                case 1:
+                    {
+                        dayOfWeek = "TUESDAY";
+                    }
+                    break;
+                case 2:
+                    {
+                        dayOfWeek = "WEDNESDAY";
+                    }
+                    break;
+                case 3:
+                    {
+                        dayOfWeek = "THURSDAY";
+                    }
+                    break;
+                case 4:
+                    {
+                        dayOfWeek = "FRIDAY";
+                    }
+                    break;
+                case 5:
+                    {
+                        dayOfWeek = "SATURDAY";
+                    }
+                    break;
+                case 6:
+                    {
+                        dayOfWeek = "SUNDAY";
+                    }
+                    break;
+            }
 
+            Console.WriteLine($"THE HIGHEST AMOUNT IS SPENT ON {dayOfWeek}IN A WEEK IS {max}");
+        }
+        public static void minSpentAmountPerDay(double[] minArray)
+        {
+            double min = 0;
+            int index = 0;
+            string dayOfWeek = "";
+            for (int i = 0; i < minArray.Length; i++)
+            {
+                if (min > minArray[i])
+                {
+                    min = minArray[i];
+                    index = i;
+                }
+            }
+            switch (index)
+            {
+                case 0:
+                    {
+                        dayOfWeek = "MONDAY";
+                    }
+                    break;
+                case 1:
+                    {
+                        dayOfWeek = "TUESDAY";
+                    }
+                    break;
+                case 2:
+                    {
+                        dayOfWeek = "WEDNESDAY";
+                    }
+                    break;
+                case 3:
+                    {
+                        dayOfWeek = "THURSDAY";
+                    }
+                    break;
+                case 4:
+                    {
+                        dayOfWeek = "FRIDAY";
+                    }
+                    break;
+                case 5:
+                    {
+                        dayOfWeek = "SATURDAY";
+                    }
+                    break;
+                case 6:
+                    {
+                        dayOfWeek = "SUNDAY";
+                    }
+                    break;
+            }
+
+            Console.WriteLine($"THE LEAST AMOUNT IS SPENT ON {dayOfWeek} IN A WEEK IS {min}");
+        }
+        
+       public static void Print(int[,] expenseArray, string expenseName)
+       {
+           Console.WriteLine($"{ expenseName}");
+           Console.WriteLine("                Expense 1  Expense 2  Expense 3  Expense 4  Expense 5  Expense 6  Expense 7  Expense 8  Expense 9  Expense 10");
+           string[] weekDayNames = new string[7] { "Monday      ", "Tuesday     ", "Wednesday   ", "Thursday    ", "Friday      ", "Saturday    ", "Sunday      " };
+           for (int i = 0; i < 7; i++)
+           {
+               Console.Write($"  {weekDayNames[i]}");
+               for (int j = 0; j < 10; j++)
+               {
+                   Console.Write($"    {expenseArray[i, j]}      ");
+               }
+               Console.WriteLine();
+
+           }
+           Console.WriteLine();
+       }
+       
+        /*
+        public static double TotalExpenseOnDay(int dayNumber, int[,] expenseDay)
+        {
+            double totalSpendingOnDay = 0;
+            for(int i = 0; i < 10;i++)
+            {
+                totalSpendingOnDay += expenseDay[dayNumber, i];
+            }
+            return totalSpendingOnDay;
+        }
+        */
+        /*
+       public static double TotalAmountOfExpense(int[,] expense )
+       {
+           int totalAmount = 0;
+           for (int i = 0; i < 7; i++  )
+           {
+               for(int j = 0; j < 10; j++)
+               {
+                   totalAmount += expense[i, j]; 
+               }
+           }
+           return totalAmount;
+       }
+       */
     }
 }
