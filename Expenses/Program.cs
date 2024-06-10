@@ -110,7 +110,6 @@ namespace Expenses
             totalWeeklySpending = TotalSpendingPerWeek(allExpenses);
             Console.WriteLine($"TOTAL WEEKLY SPENDING IS {totalWeeklySpending}");
             //////////////////  Ən çox hansı növ üçün xərc çəkilib və miqdarı////////////////
-
             double[] ArrayOfSpendingPerExpense = new double[] { totalSpendingForNutrition,
                                                                 totalSpendingForTransport,
                                                                 totalSpendingForEducation,
@@ -121,7 +120,6 @@ namespace Expenses
             maxSpentAmountPerExpense(ArrayOfSpendingPerExpense);
             //////////////////// Ən az hansı növ üçün xərc çəkilib və miqdarı///////////////
             minSpentAmountPerExpense(ArrayOfSpendingPerExpense);
-
             ////////////////////  Günlük ortalama xərc nə qədərdir///////////////
             double averageDailySpending = 0;
             for(int dayCounter = 0; dayCounter < 7; dayCounter++)
@@ -133,62 +131,6 @@ namespace Expenses
             maxSpentAmountPerDay(totalExpensePerDay);
             //////////////////// Ən az hansı gün xərc edilib və miqdarı///////////////
             minSpentAmountPerDay(totalExpensePerDay);
-          
-
-            /*
-            
-            double totalSpendingOnMonday = TotalExpenseOnDay(0, nutrition)
-                                                   + TotalExpenseOnDay(0, transport)
-                                                   + TotalExpenseOnDay(0, education)
-                                                   + TotalExpenseOnDay(0, communication)
-                                                   + TotalExpenseOnDay(0, utilities)
-                                                   + TotalExpenseOnDay(0, others);
-            double totalSpendingOnTuesday = TotalExpenseOnDay(1, nutrition)
-                                                    + TotalExpenseOnDay(1, transport)
-                                                    + TotalExpenseOnDay(1, education)
-                                                    + TotalExpenseOnDay(1, communication)
-                                                    + TotalExpenseOnDay(1, utilities)
-                                                    + TotalExpenseOnDay(1, others);
-            double totalSpendingOnWednesday = TotalExpenseOnDay(2, nutrition)
-                                                    + TotalExpenseOnDay(2, transport)
-                                                    + TotalExpenseOnDay(2, education)
-                                                    + TotalExpenseOnDay(2, communication)
-                                                    + TotalExpenseOnDay(2, utilities)
-                                                    + TotalExpenseOnDay(2, others);
-            double totalSpendingOnThursday = TotalExpenseOnDay(3, nutrition)
-                                                    + TotalExpenseOnDay(3, transport)
-                                                    + TotalExpenseOnDay(3, education)
-                                                    + TotalExpenseOnDay(3, communication)
-                                                    + TotalExpenseOnDay(3, utilities)
-                                                    + TotalExpenseOnDay(3, others);
-            double totalSpendingOnFriday = TotalExpenseOnDay(4, nutrition)
-                                                    + TotalExpenseOnDay(4, transport)
-                                                    + TotalExpenseOnDay(4, education)
-                                                    + TotalExpenseOnDay(4, communication)
-                                                    + TotalExpenseOnDay(4, utilities)
-                                                    + TotalExpenseOnDay(4, others);
-            double totalSpendingOnSaturday = TotalExpenseOnDay(5, nutrition)
-                                                    + TotalExpenseOnDay(5, transport)
-                                                    + TotalExpenseOnDay(5, education)
-                                                    + TotalExpenseOnDay(5, communication)
-                                                    + TotalExpenseOnDay(5, utilities)
-                                                    + TotalExpenseOnDay(5, others);
-            double totalSpendingOnSunday = TotalExpenseOnDay(6, nutrition)
-                                                    + TotalExpenseOnDay(6, transport)
-                                                    + TotalExpenseOnDay(6, education)
-                                                    + TotalExpenseOnDay(6, communication)
-                                                    + TotalExpenseOnDay(6, utilities)
-                                                    + TotalExpenseOnDay(6, others);
-            */
-            /*
-            totalWeeklySpending = (totalSpendingOnMonday
-                                         + totalSpendingOnTuesday
-                                         + totalSpendingOnWednesday
-                                         + totalSpendingOnThursday
-                                         + totalSpendingOnFriday
-                                         + totalSpendingOnSaturday
-                                         + totalSpendingOnSunday);
-            */
             
             Print(nutrition, "Nutrition : ");
             Print(transport, "Transport : ");
@@ -197,37 +139,7 @@ namespace Expenses
             Print(utilities, "Utilities: ");
             Print(others, " Others: ");
 
-            
-            /*
-
-
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON NUTRITION IS {TotalAmountOfExpense(nutrition)}");
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON TRANSPORT IS {TotalAmountOfExpense(transport)}");
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON EDUCATION IS {TotalAmountOfExpense(education)}");
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON COMMUNICATION IS {TotalAmountOfExpense(communication)}");
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON UTILITIES IS {TotalAmountOfExpense(utilities)}");
-            Console.WriteLine($"TOTAL AMOUNT SPEND ON OTHERS IS {TotalAmountOfExpense(others)}");
-
-           
-            double dailyAverageSpending = (totalSpendingOnMonday
-                                          + totalSpendingOnTuesday
-                                          + totalSpendingOnWednesday
-                                          + totalSpendingOnThursday
-                                          + totalSpendingOnFriday
-                                          + totalSpendingOnSaturday
-                                          + totalSpendingOnSunday) / 7;
-
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON MONDAY IS {totalSpendingOnMonday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON TUESDAY IS {totalSpendingOnTuesday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON WEDNESDAY IS {totalSpendingOnWednesday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON THURSDAY IS {totalSpendingOnThursday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON FRIDAY IS {totalSpendingOnFriday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON SATURDAY IS {totalSpendingOnSaturday}");
-            Console.WriteLine($"TOTAL AMOUNT SPENT ON SUNDAY IS {totalSpendingOnSunday}");
-            Console.WriteLine($"AVERAGE DAILY SPENDING IS {dailyAverageSpending}");
-            */
         }
-
         public static string GetNameOfExpense(int expenseNumber)
         {
             string expenseName;
@@ -488,8 +400,7 @@ namespace Expenses
 
             Console.WriteLine($"THE LEAST AMOUNT IS SPENT ON {dayOfWeek} IN A WEEK IS {min}");
         }
-        
-       public static void Print(int[,] expenseArray, string expenseName)
+        public static void Print(int[,] expenseArray, string expenseName)
        {
            Console.WriteLine($"{ expenseName}");
            Console.WriteLine("                Expense 1  Expense 2  Expense 3  Expense 4  Expense 5  Expense 6  Expense 7  Expense 8  Expense 9  Expense 10");
@@ -507,30 +418,111 @@ namespace Expenses
            Console.WriteLine();
        }
        
-        /*
-        public static double TotalExpenseOnDay(int dayNumber, int[,] expenseDay)
-        {
-            double totalSpendingOnDay = 0;
-            for(int i = 0; i < 10;i++)
-            {
-                totalSpendingOnDay += expenseDay[dayNumber, i];
-            }
-            return totalSpendingOnDay;
-        }
-        */
-        /*
-       public static double TotalAmountOfExpense(int[,] expense )
-       {
-           int totalAmount = 0;
-           for (int i = 0; i < 7; i++  )
-           {
-               for(int j = 0; j < 10; j++)
-               {
-                   totalAmount += expense[i, j]; 
-               }
-           }
-           return totalAmount;
-       }
-       */
+       
     }
 }
+
+/*
+Console.WriteLine($"TOTAL AMOUNT SPEND ON NUTRITION IS {TotalAmountOfExpense(nutrition)}");
+Console.WriteLine($"TOTAL AMOUNT SPEND ON TRANSPORT IS {TotalAmountOfExpense(transport)}");
+Console.WriteLine($"TOTAL AMOUNT SPEND ON EDUCATION IS {TotalAmountOfExpense(education)}");
+Console.WriteLine($"TOTAL AMOUNT SPEND ON COMMUNICATION IS {TotalAmountOfExpense(communication)}");
+Console.WriteLine($"TOTAL AMOUNT SPEND ON UTILITIES IS {TotalAmountOfExpense(utilities)}");
+Console.WriteLine($"TOTAL AMOUNT SPEND ON OTHERS IS {TotalAmountOfExpense(others)}");
+
+double dailyAverageSpending = (totalSpendingOnMonday
+                              + totalSpendingOnTuesday
+                              + totalSpendingOnWednesday
+                              + totalSpendingOnThursday
+                              + totalSpendingOnFriday
+                              + totalSpendingOnSaturday
+                              + totalSpendingOnSunday) / 7;
+
+Console.WriteLine($"TOTAL AMOUNT SPENT ON MONDAY IS {totalSpendingOnMonday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON TUESDAY IS {totalSpendingOnTuesday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON WEDNESDAY IS {totalSpendingOnWednesday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON THURSDAY IS {totalSpendingOnThursday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON FRIDAY IS {totalSpendingOnFriday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON SATURDAY IS {totalSpendingOnSaturday}");
+Console.WriteLine($"TOTAL AMOUNT SPENT ON SUNDAY IS {totalSpendingOnSunday}");
+Console.WriteLine($"AVERAGE DAILY SPENDING IS {dailyAverageSpending}");
+*/
+/*
+       public static double TotalExpenseOnDay(int dayNumber, int[,] expenseDay)
+       {
+           double totalSpendingOnDay = 0;
+           for(int i = 0; i < 10;i++)
+           {
+               totalSpendingOnDay += expenseDay[dayNumber, i];
+           }
+           return totalSpendingOnDay;
+       }
+       */
+/*
+public static double TotalAmountOfExpense(int[,] expense )
+{
+   int totalAmount = 0;
+   for (int i = 0; i < 7; i++  )
+   {
+       for(int j = 0; j < 10; j++)
+       {
+           totalAmount += expense[i, j]; 
+       }
+   }
+   return totalAmount;
+}
+*/
+/*
+
+          double totalSpendingOnMonday = TotalExpenseOnDay(0, nutrition)
+                                                 + TotalExpenseOnDay(0, transport)
+                                                 + TotalExpenseOnDay(0, education)
+                                                 + TotalExpenseOnDay(0, communication)
+                                                 + TotalExpenseOnDay(0, utilities)
+                                                 + TotalExpenseOnDay(0, others);
+          double totalSpendingOnTuesday = TotalExpenseOnDay(1, nutrition)
+                                                  + TotalExpenseOnDay(1, transport)
+                                                  + TotalExpenseOnDay(1, education)
+                                                  + TotalExpenseOnDay(1, communication)
+                                                  + TotalExpenseOnDay(1, utilities)
+                                                  + TotalExpenseOnDay(1, others);
+          double totalSpendingOnWednesday = TotalExpenseOnDay(2, nutrition)
+                                                  + TotalExpenseOnDay(2, transport)
+                                                  + TotalExpenseOnDay(2, education)
+                                                  + TotalExpenseOnDay(2, communication)
+                                                  + TotalExpenseOnDay(2, utilities)
+                                                  + TotalExpenseOnDay(2, others);
+          double totalSpendingOnThursday = TotalExpenseOnDay(3, nutrition)
+                                                  + TotalExpenseOnDay(3, transport)
+                                                  + TotalExpenseOnDay(3, education)
+                                                  + TotalExpenseOnDay(3, communication)
+                                                  + TotalExpenseOnDay(3, utilities)
+                                                  + TotalExpenseOnDay(3, others);
+          double totalSpendingOnFriday = TotalExpenseOnDay(4, nutrition)
+                                                  + TotalExpenseOnDay(4, transport)
+                                                  + TotalExpenseOnDay(4, education)
+                                                  + TotalExpenseOnDay(4, communication)
+                                                  + TotalExpenseOnDay(4, utilities)
+                                                  + TotalExpenseOnDay(4, others);
+          double totalSpendingOnSaturday = TotalExpenseOnDay(5, nutrition)
+                                                  + TotalExpenseOnDay(5, transport)
+                                                  + TotalExpenseOnDay(5, education)
+                                                  + TotalExpenseOnDay(5, communication)
+                                                  + TotalExpenseOnDay(5, utilities)
+                                                  + TotalExpenseOnDay(5, others);
+          double totalSpendingOnSunday = TotalExpenseOnDay(6, nutrition)
+                                                  + TotalExpenseOnDay(6, transport)
+                                                  + TotalExpenseOnDay(6, education)
+                                                  + TotalExpenseOnDay(6, communication)
+                                                  + TotalExpenseOnDay(6, utilities)
+                                                  + TotalExpenseOnDay(6, others);
+          */
+/*
+totalWeeklySpending = (totalSpendingOnMonday
+                             + totalSpendingOnTuesday
+                             + totalSpendingOnWednesday
+                             + totalSpendingOnThursday
+                             + totalSpendingOnFriday
+                             + totalSpendingOnSaturday
+                             + totalSpendingOnSunday);
+*/
