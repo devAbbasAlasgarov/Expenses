@@ -22,9 +22,10 @@ namespace Expenses
             int[,] communication = new int[7, 10];
             int[,] utilities = new int[7, 10];
             int[,] others = new int[7, 10];
-            int counter = 0;
+            
             for (int i = 0; i < WEEK_DAYS; i++)
             {
+                int counter = 0;
                 int numberOfDay = i+1;
                 
                 Console.WriteLine($"IS THERE ANY EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -40,7 +41,7 @@ namespace Expenses
                     int f = 0;
 
                     string expenseResponseForDay = "y";
-                    while (counter < 10 && expenseResponseForDay == "y")
+                    while (counter < 70 && expenseResponseForDay == "y")
                     {
                         string expenseResponseForExpenseType = "y";
                         Console.WriteLine("1 . Nutrition");
