@@ -22,7 +22,7 @@ namespace Expenses
             int[,] communication = new int[7, 10];
             int[,] utilities = new int[7, 10];
             int[,] others = new int[7, 10];
-
+            int counter = 0;
             for (int i = 0; i < WEEK_DAYS; i++)
             {
                 int numberOfDay = i+1;
@@ -32,9 +32,17 @@ namespace Expenses
                 if(response == "y")
                 {
                     int j = 0;
-                    string expenseResponseForTheDay = "y";
-                    while (j < 10 && expenseResponseForTheDay == "y")
+                    int a = 0;
+                    int b = 0;
+                    int c = 0;
+                    int d = 0;
+                    int e = 0;
+                    int f = 0;
+
+                    string expenseResponseForDay = "y";
+                    while (counter < 10 && expenseResponseForDay == "y")
                     {
+                        string expenseResponseForExpenseType = "y";
                         Console.WriteLine("1 . Nutrition");
                         Console.WriteLine("2 . Transport");
                         Console.WriteLine("3 . Education");
@@ -43,59 +51,144 @@ namespace Expenses
                         Console.WriteLine("6 . Others");
                         Console.WriteLine("ENTER TYPE OF EXPENSE: ");
                         typeOfExpense = int.Parse(Console.ReadLine());
-                            switch (typeOfExpense)
-                            {
-                                case 1:
+
+                        switch (typeOfExpense)
+                        {
+                            case 1:
+                                {
+                                    while (a < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        nutrition[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForNutrition = totalSpendingForNutrition + nutrition[i, j];    
+                                        nutrition[i, a] = int.Parse(Console.ReadLine());
+                                        totalSpendingForNutrition = totalSpendingForNutrition + nutrition[i, a];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if(expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        a++;
+                                        counter++;
                                     }
-                                    break;
-                                case 2:
+                                }
+                                break;
+
+                            case 2:
+                                {
+                                    while (b < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        transport[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForTransport = totalSpendingForTransport + transport[i, j];
+                                        transport[i, b] = int.Parse(Console.ReadLine());
+                                        totalSpendingForTransport = totalSpendingForTransport + transport[i, b];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if (expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        b++;
+                                        counter++;
+
                                     }
-                                    break;
-                                case 3:
+
+                                }
+                                break;
+
+
+                            case 3:
+                                {
+                                    while (c < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        education[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForEducation = totalSpendingForEducation + education[i, j];
+                                        education[i, c] = int.Parse(Console.ReadLine());
+                                        totalSpendingForEducation = totalSpendingForEducation + education[i, c];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if (expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        c++;
+                                        counter++;
+
                                     }
-                                    break;
-                                case 4:
+                                }
+                                break;
+
+                            case 4:
+                                {
+                                    while (d < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        communication[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForCommunication = totalSpendingForCommunication + communication[i, j];
+                                        communication[i, d] = int.Parse(Console.ReadLine());
+                                        totalSpendingForCommunication = totalSpendingForCommunication + communication[i, d];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if (expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        d++;
+                                        counter++;
+
                                     }
-                                    break;
-                                case 5:
+
+                                }
+                                break;
+                            case 5:
+                                {
+                                    while (e < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        utilities[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForUtilities = totalSpendingForUtilities + utilities[i, j];
+                                        utilities[i, e] = int.Parse(Console.ReadLine());
+                                        totalSpendingForUtilities = totalSpendingForUtilities + utilities[i, e];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if (expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        e++;
+                                        counter++;
+
                                     }
-                                    break;
-                                case 6:
+                                }
+                                break;
+                            case 6:
+                                {
+                                    while (f < 10 && expenseResponseForExpenseType == "y")
                                     {
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
-                                        others[i, j] = int.Parse(Console.ReadLine());
-                                        totalSpendingForOthers = totalSpendingForOthers + others[i, j];
+                                        others[i, f] = int.Parse(Console.ReadLine());
+                                        totalSpendingForOthers = totalSpendingForOthers + others[i, f];
+                                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
+                                        expenseResponseForExpenseType = Console.ReadLine();
+                                        if (expenseResponseForExpenseType == "n")
+                                        {
+                                            Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
+                                            expenseResponseForDay = Console.ReadLine();
+                                        }
+                                        f++;
+                                        counter++;
+
                                     }
-                                    break;
-                            }
-                        
-                        Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
-                        expenseResponseForTheDay = Console.ReadLine();
+                                }
+                                break;
+
+
+                        }
+                    }    
+                       
                         totalExpensePerDay[j] = nutrition[i, j] + transport[i, j] + education[i, j]
                                                 + communication[i, j] + utilities[i, j] + others[i, j];
                         j++;
-                    }
                 }
+                
                 else if(response == "n")
                 {
                     Console.WriteLine($"THERE IS NO ANY EXPENSE ON DAY {numberOfDay}.");
