@@ -15,6 +15,7 @@ namespace Expenses
             double totalSpendingForCommunication = 0;
             double totalSpendingForUtilities = 0;
             double totalSpendingForOthers = 0;
+
             double[] totalExpensePerDay = new double[7];
             int[,] nutrition = new int[7, 10];
             int[,] transport = new int[7, 10];
@@ -62,6 +63,7 @@ namespace Expenses
                                         Console.WriteLine($"ENTER THE AMOUNT SPEND FOR {GetNameOfExpense(typeOfExpense)} ON DAY {numberOfDay}");
                                         nutrition[i, a] = int.Parse(Console.ReadLine());
                                         totalSpendingForNutrition = totalSpendingForNutrition + nutrition[i, a];
+                                        
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
                                         totalExpensePerDay[i] = nutrition[i, a] + transport[i, a] + education[i, a]
@@ -226,10 +228,29 @@ namespace Expenses
             averageDailySpending = totalWeeklySpending/WEEK_DAYS;
             Console.WriteLine($"THE AVERAGE DAILY SPENDING IS {averageDailySpending}");
             //////////////////// Ən çox hansı gün xərc edilib və miqdarı///////////////
-            maxSpentAmountPerDay(totalExpensePerDay);
+            double totalExpenseOnMonday = TotalSpendingOnMonday(nutrition) + TotalSpendingOnMonday(transport) + TotalSpendingOnMonday(education) + TotalSpendingOnMonday(communication) + TotalSpendingOnMonday(utilities)
+                              + TotalSpendingOnMonday(others);
+            double totalExpenseOnTuesday = TotalSpendingOnTuesday(nutrition) + TotalSpendingOnTuesday(transport) + TotalSpendingOnTuesday(education) + TotalSpendingOnTuesday(communication) + TotalSpendingOnTuesday(utilities)
+                                        + TotalSpendingOnTuesday(others);
+            double totalExpenseOnWednesday = TotalSpendingOnWednesday(nutrition) + TotalSpendingOnWednesday(transport) + TotalSpendingOnWednesday(education) + TotalSpendingOnWednesday(communication) + TotalSpendingOnWednesday(utilities)
+                                        + TotalSpendingOnWednesday(others);
+            double totalExpenseOnThursday = TotalSpendingOnThursday(nutrition) + TotalSpendingOnThursday(transport) + TotalSpendingOnThursday(education) + TotalSpendingOnThursday(communication) + TotalSpendingOnThursday(utilities)
+                                        + TotalSpendingOnThursday(others);
+            double totalExpenseOnFriday = TotalSpendingOnFriday(nutrition) + TotalSpendingOnFriday(transport) + TotalSpendingOnFriday(education) + TotalSpendingOnFriday(communication) + TotalSpendingOnFriday(utilities)
+                                        + TotalSpendingOnFriday(others);
+            double totalExpenseOnSaturday = TotalSpendingOnSaturday(nutrition) + TotalSpendingOnSaturday(transport) + TotalSpendingOnSaturday(education) + TotalSpendingOnSaturday(communication) + TotalSpendingOnSaturday(utilities)
+                                        + TotalSpendingOnSaturday(others);
+            double totalExpenseOnSunday = TotalSpendingOnSunday(nutrition) + TotalSpendingOnSunday(transport) + TotalSpendingOnSunday(education) + TotalSpendingOnSunday(communication) + TotalSpendingOnSunday(utilities)
+                                        + TotalSpendingOnSunday(others);
+            double[] arrayOfDayExpenses = new double[7] { totalExpenseOnMonday, totalExpenseOnTuesday, totalExpenseOnWednesday, totalExpenseOnThursday, totalExpenseOnFriday, totalExpenseOnSaturday, totalExpenseOnSunday };
+            maxSpentAmountPerDay(arrayOfDayExpenses);
             //////////////////// Ən az hansı gün xərc edilib və miqdarı///////////////
             minSpentAmountPerDay(totalExpensePerDay);
-            
+
+            /////////////// total expense on Monday //////////////////
+
+
+
             Print(nutrition, "Nutrition : ");
             Print(transport, "Transport : ");
             Print(education, "Education : ");
@@ -531,5 +552,73 @@ namespace Expenses
            }
            Console.WriteLine();
        }
+        /// <summary>
+        /// calculating total amount per day methods
+        /// </summary>
+        /// <param name="arrayOfExpenses"></param>
+        /// <returns></returns>
+        public static double TotalSpendingOnMonday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[0, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnTuesday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[1, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnWednesday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[2, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnThursday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[3, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnFriday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[4, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnSaturday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[5, i];
+            }
+            return total;
+        }
+        public static double TotalSpendingOnSunday(int[,] arrayOfExpenses)
+        {
+            double total = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                total += arrayOfExpenses[6, i];
+            }
+            return total;
+        }
     }
 }
