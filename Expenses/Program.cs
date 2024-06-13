@@ -387,10 +387,6 @@ namespace Expenses
                     min = minArray[i];
                     index = i;
                 }
-                else
-                {
-                    index = i - 1;
-                }
             }
             switch (index)
             {
