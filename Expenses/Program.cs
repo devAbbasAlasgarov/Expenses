@@ -64,7 +64,9 @@ namespace Expenses
                                         totalSpendingForNutrition = totalSpendingForNutrition + nutrition[i, a];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
-                                        if(expenseResponseForExpenseType == "n")
+                                        totalExpensePerDay[i] = nutrition[i, a] + transport[i, a] + education[i, a]
+                                                + communication[i, a] + utilities[i, a] + others[i, a];
+                                        if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
                                             expenseResponseForDay = Console.ReadLine();
@@ -84,6 +86,8 @@ namespace Expenses
                                         totalSpendingForTransport = totalSpendingForTransport + transport[i, b];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
+                                        totalExpensePerDay[i] = nutrition[i, b] + transport[i, b] + education[i, b]
+                                                + communication[i, b] + utilities[i, b] + others[i, b];
                                         if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -107,6 +111,8 @@ namespace Expenses
                                         totalSpendingForEducation = totalSpendingForEducation + education[i, c];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
+                                        totalExpensePerDay[i] = nutrition[i, c] + transport[i, c] + education[i, c]
+                                                + communication[i, c] + utilities[i, c] + others[i, c];
                                         if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -128,6 +134,8 @@ namespace Expenses
                                         totalSpendingForCommunication = totalSpendingForCommunication + communication[i, d];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
+                                        totalExpensePerDay[i] = nutrition[i, d] + transport[i, d] + education[i, d]
+                                                + communication[i, d] + utilities[i, d] + others[i, d];
                                         if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -149,6 +157,8 @@ namespace Expenses
                                         totalSpendingForUtilities = totalSpendingForUtilities + utilities[i, e];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
+                                        totalExpensePerDay[i] = nutrition[i, e] + transport[i, e] + education[i, e]
+                                                + communication[i, e] + utilities[i, e] + others[i, e];
                                         if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -169,6 +179,8 @@ namespace Expenses
                                         totalSpendingForOthers = totalSpendingForOthers + others[i, f];
                                         Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay} FOR {GetNameOfExpense(typeOfExpense)}? (y - yes / n - no)");
                                         expenseResponseForExpenseType = Console.ReadLine();
+                                        totalExpensePerDay[i] = nutrition[i, f] + transport[i, f] + education[i, f]
+                                                + communication[i, f] + utilities[i, f] + others[i, f];
                                         if (expenseResponseForExpenseType == "n")
                                         {
                                             Console.WriteLine($"IS THERE OTHER EXPENSE ON DAY {numberOfDay}? (y - yes / n - no)");
@@ -185,8 +197,7 @@ namespace Expenses
                         }
                     }    
                        
-                        totalExpensePerDay[j] = nutrition[i, j] + transport[i, j] + education[i, j]
-                                                + communication[i, j] + utilities[i, j] + others[i, j];
+                        
                         j++;
                 }
                 
