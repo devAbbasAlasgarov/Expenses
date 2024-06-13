@@ -223,11 +223,8 @@ namespace Expenses
             minSpentAmountPerExpense(ArrayOfSpendingPerExpense);
             ////////////////////  Günlük ortalama xərc nə qədərdir///////////////
             double averageDailySpending = 0;
-            for(int i = 0; i < WEEK_DAYS; i++)
-            {
-                averageDailySpending = averageDailySpending + totalExpensePerDay[i];
-            }
-            Console.WriteLine($"THE AVERAGE DAILY SPENDING IS {averageDailySpending/7}");
+            averageDailySpending = totalWeeklySpending/WEEK_DAYS;
+            Console.WriteLine($"THE AVERAGE DAILY SPENDING IS {averageDailySpending}");
             //////////////////// Ən çox hansı gün xərc edilib və miqdarı///////////////
             maxSpentAmountPerDay(totalExpensePerDay);
             //////////////////// Ən az hansı gün xərc edilib və miqdarı///////////////
