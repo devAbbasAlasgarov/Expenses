@@ -377,7 +377,7 @@ namespace Expenses
         }
         public static void minSpentAmountPerExpense(double[] minArray)
         {
-            double min = 0;
+            double min = minArray[0];
             int index = 0;
             string nameOfExpense = "";
             for (int i = 0; i < minArray.Length; i++)
@@ -480,7 +480,7 @@ namespace Expenses
         }
         public static void minSpentAmountPerDay(double[] minArray)
         {
-            double min = 0;
+            double min = minArray[0];
             int index = 0;
             string dayOfWeek = "";
             for (int i = 0; i < 7; i++)
